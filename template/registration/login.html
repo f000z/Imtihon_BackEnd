@@ -1,0 +1,272 @@
+<style>
+    /* General Page Styling */
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #f4f4f9;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: relative;
+        z-index: 1;
+    }
+
+    .form-container {
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        backdrop-filter: blur(10px); /* Optional: blur the background */
+    }
+
+    .form-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+        font-weight: 600;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    form p {
+        margin-bottom: 10px;
+    }
+
+    button.submit-btn {
+        background-color: #007BFF;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button.submit-btn:hover {
+        background-color: #0056b3;
+    }
+
+    /* Style for input fields */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="file"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        margin-top: 5px;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="file"]:focus,
+    textarea:focus {
+        border-color: #007BFF;
+        outline: none;
+    }
+
+    input[type="file"] {
+        padding: 3px;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    label {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .form-footer {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .form-footer a {
+        color: #007BFF;
+        text-decoration: none;
+    }
+
+    .form-footer a:hover {
+        text-decoration: underline;
+    }
+
+    /* Furniture-like Cubes */
+    .cube {
+        position: absolute;
+        width: 120px; /* Size of cubes */
+        height: 80px;
+        border-radius: 10px; /* Soft corners for a furniture feel */
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        background-color: #8B4513; /* Default solid wood color */
+        animation: cubeMove 15s infinite linear;
+    }
+
+    /* Wooden Material Texture for the Cubes (e.g. wood texture for furniture) */
+    .cube:nth-child(1) {
+        background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); /* Wood texture */
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    /* Optional: Different textures for each cube to represent furniture items */
+    .cube:nth-child(2) {
+        background-image: url('https://www.transparenttextures.com/patterns/fabric.png'); /* Fabric-like texture */
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .cube:nth-child(3) {
+        background-image: url('https://www.transparenttextures.com/patterns/square.png'); /* Soft square cushions */
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .cube:nth-child(4) {
+        background-color: #B5651D; /* A rich, dark wood */
+    }
+
+    /* Animation for floating cubes with more natural movement */
+    @keyframes cubeMove {
+        0% {
+            transform: translate(0, 0) rotate(0);
+        }
+        25% {
+            transform: translate(80vw, 60vh) rotate(20deg);
+        }
+        50% {
+            transform: translate(20vw, 80vh) rotate(40deg);
+        }
+        75% {
+            transform: translate(50vw, 50vh) rotate(60deg);
+        }
+        100% {
+            transform: translate(10vw, 20vh) rotate(80deg);
+        }
+    }
+
+    /* Randomized positions for each cube */
+    .cube:nth-child(1) {
+        animation-duration: 8s;
+        animation-delay: 0s;
+        left: 10%;
+        top: 20%;
+    }
+
+    .cube:nth-child(2) {
+        animation-duration: 10s;
+        animation-delay: 2s;
+        left: 30%;
+        top: 40%;
+    }
+
+    .cube:nth-child(3) {
+        animation-duration: 12s;
+        animation-delay: 4s;
+        left: 50%;
+        top: 60%;
+    }
+
+    .cube:nth-child(4) {
+        animation-duration: 9s;
+        animation-delay: 1s;
+        left: 70%;
+        top: 30%;
+    }
+
+    .cube:nth-child(5) {
+        animation-duration: 11s;
+        animation-delay: 3s;
+        left: 85%;
+        top: 75%;
+    }
+
+    .cube:nth-child(6) {
+        animation-duration: 14s;
+        animation-delay: 5s;
+        left: 15%;
+        top: 55%;
+    }
+
+    .cube:nth-child(7) {
+        animation-duration: 13s;
+        animation-delay: 6s;
+        left: 60%;
+        top: 20%;
+    }
+
+    .cube:nth-child(8) {
+        animation-duration: 12s;
+        animation-delay: 7s;
+        left: 40%;
+        top: 50%;
+    }
+
+    .cube:nth-child(9) {
+        animation-duration: 9s;
+        animation-delay: 8s;
+        left: 55%;
+        top: 65%;
+    }
+
+    .cube:nth-child(10) {
+        animation-duration: 10s;
+        animation-delay: 9s;
+        left: 75%;
+        top: 35%;
+    }
+</style>
+
+<div class="container">
+    <div class="form-container">
+        <h1 class="form-title">Login</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="submit-btn">Login</button>
+        </form>
+
+        <div class="form-footer">
+            <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
+            <p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Furniture-like Cubes -->
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
