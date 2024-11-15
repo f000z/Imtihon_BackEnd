@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load i18n %}
 {% load static %}
 <html lang="en">
    <head>
@@ -56,18 +57,52 @@
                         <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                      </li>
                   </ul>
+                  <form action="{% url 'set_language' %}" method="post" id="languageForm" style="padding: 10px;">
+                      {% csrf_token %}
+                      <input type="hidden" name="next" value="{{ redirect_to }}">
+
+                      <select name="language" onchange="this.form.submit();" style="font-size: 14px; padding: 5px; border: 0.2px solid #ccc; border-radius: 4px; background-color: transparent; color: white;">
+                          {% get_current_language as LANGUAGE_CODE %}
+                          {% get_available_languages as LANGUAGES %}
+                          {% get_language_info_list for LANGUAGES as languages %}
+                          {% for language in languages %}
+                              <option style="background-color: brown;" value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                  {{ language.name_local }} ({{ language.code }})
+                              </option>
+                          {% endfor %}
+                      </select>
+                  </form>
+
                   <form class="form-inline my-2 my-lg-0">
-                     <div class="search_icon">
-                        <ul>
+                     <div class="search_icon" style="text-align: right;">
+                        <ul style="list-style: none; padding: 0; margin: 0; display: inline;">
                            {% if request.user.is_authenticated %}
-                           <h3><a href="{% url 'login' %}" style="position: relative; left: 350px; top: 15px; color: yellow">Log out: {{user.username}}</a></h3>
+                           <li class="nav-item dropdown" style="display: inline;">
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: yellow; text-decoration: none; white-space: nowrap;">
+                                 {{ user.username }}
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: brown; color: white;">
+                                 <a class="dropdown-item" href="{% url 'logout' %}" style=" background-color: brown; color: yellow; text-decoration: none;">
+                                    Log out
+                                 </a>
+                              </div>
+                           </li>
                            {% else %}
-                           <h3><a href="{% url 'register' %}" style=" position: relative; left: 350px; top: 15px; color: yellow">Sign in</a></h3>
+                           <li style="display: inline;">
+                              <h3>
+                                 <a href="{% url 'register' %}" style="color: yellow; text-decoration: none; white-space: nowrap;">
+                                    Sign in
+                                 </a>
+                              </h3>
+                           </li>
                            {% endif %}
-                            <input style="position: relative; top: -18px;" type="search" placeholder="search">
                         </ul>
                      </div>
                   </form>
+
+
+
+
                </div>
             </div>
         </nav>

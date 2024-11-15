@@ -4,8 +4,9 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, 
 from .views import register, dashboard
 
 urlpatterns = [
-    path('', LoginView.as_view(), name='login'),
-    path('registration/', register, name='register'),
+    path('register/', register, name='register'),
+    path('login/', LoginView.as_view(), name='login'),
+
     path('dashboard/', dashboard, name='dashboard'),
     path('logout/', LogoutView.as_view(), name='logout'),
 

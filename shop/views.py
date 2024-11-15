@@ -4,7 +4,7 @@ from .models import Category, Furniture, ShopMainView
 
 def home(requests):
     category = Category.objects.all()
-    banners = ShopMainView.objects.all()[:4]
+    banners = ShopMainView.objects.all()
     context = {
         'category': category,
         'banners': banners,
@@ -28,6 +28,9 @@ def about(request):
 def shop(request):
     return render(request, 'shop.html')
 
+
+def product(request):
+    return render(request, 'product.html')
 
 
 
