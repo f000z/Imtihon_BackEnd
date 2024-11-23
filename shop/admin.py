@@ -1,6 +1,11 @@
 from django.contrib import admin
-from .models import Category, Furniture, ShopMainView
+from shop.models import Category, Furniture, ShopMainView, ContactModel
+
 
 admin.site.register(Category)
 admin.site.register(Furniture)
 admin.site.register(ShopMainView)
+admin.site.register(ContactModel)
+
+
+

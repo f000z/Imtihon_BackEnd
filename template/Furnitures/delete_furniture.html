@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4" style="font-size: 36px; font-weight: 600; color: #dc3545;">Удаление мебели</h1>
+
+    <div class="alert alert-warning text-center" role="alert" style="font-size: 18px;">
+        Вы уверены, что хотите удалить мебель "{{ furniture.name }}"? Это действие необратимо.
+    </div>
+
+    <form method="post" class="text-center">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" style="padding: 12px 30px; font-size: 18px;">Удалить</button>
+        <a href="{% url 'shop' %}" class="btn btn-secondary" style="padding: 12px 30px; font-size: 18px;">Отмена</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4" style="font-size: 36px; font-weight: 600;">Редактирование мебели: {{ furniture.name }}</h1>
+
+    <form method="post" enctype="multipart/form-data" class="shadow-lg p-4 rounded" style="background-color: #f9f9f9;">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            <label for="id_name" style="font-size: 18px; font-weight: 500;">Название</label>
+            {{ form.name }}
+        </div>
+        <div class="form-group mb-3">
+            <label for="id_price" style="font-size: 18px; font-weight: 500;">Цена</label>
+            {{ form.price }}
+        </div>
+        <div class="form-group mb-3">
+            <label for="id_image" style="font-size: 18px; font-weight: 500;">Изображение</label>
+            {{ form.image }}
+        </div>
+        <div class="form-group mb-3">
+            <label for="id_category" style="font-size: 18px; font-weight: 500;">Категория</label>
+            {{ form.category }}
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" style="padding: 10px 30px; font-size: 16px;">Обновить мебель</button>
+        </div>
+    </form>
+
+    {% if form.errors %}
+    <div class="alert alert-danger mt-3">
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

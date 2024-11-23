@@ -2,7 +2,69 @@
 {% load static %}
 
 {% block content %}
+      <!-- Carousel section start -->
+      <div id="carouselExample" class="carousel slide" data-ride="carousel">
+         <div class="carousel-inner">
+            {% for banner in banners %}
+               <div class="carousel-item {% if forloop.first %}active{% endif %}" style="background-color: brown;">
+                  <div class="d-flex align-items-center justify-content-start" style="position: relative; height: 450px;">
+                     <img src="{{ banner.image.url }}" alt="{{ banner.title }}" class="d-block" style="border-radius: 25px; height: 380px; margin-left: 1220px; max-height: 350px; width: auto; object-fit: cover; border-radius: 15px; transition: transform 0.6s ease, opacity 0.6s ease;">
+                     <div class="carousel-caption d-none d-md-block" style="position: absolute; z-index: 2; top: 10%; right: 0; transform: translateX(50%); text-align: left; color: white; font-family: 'Roboto', sans-serif; opacity: 0; animation: fadeIn 2s forwards;">
+                        <h5 style="font-size: 3.5rem; font-weight: bold; text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7); transform: translateY(30px);">
+                           {{ banner.title | truncatewords:3  }}
+                        </h5>
+                        <p style="font-size: 1.5rem; font-weight: 300; text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7); margin-top: 20px; transform: translateY(30px);">
+                           {{ banner.body | truncatewords:6}}
+                        </p>
+                        <a href="{% url 'contact' %}" class="btn btn-primary" style="margin-top: 100px; padding: 12px 30px; font-size: 1.2rem; font-weight: 600; border-radius: 50px; background-color: #007bff; border-color: #007bff;">
+                           Contact Us
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            {% endfor %}
+         </div>
+         <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev" style="color: white; font-size: 3rem;">
+            <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1);"></span>
+            <span class="sr-only">Previous</span>
+         </a>
+         <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next" style="color: white; font-size: 3rem;">
+            <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1);"></span>
+            <span class="sr-only">Next</span>
+         </a>
+      </div>
+      <!-- Carousel section end -->
 
+      <style>
+         @keyframes fadeIn {
+            from {
+               opacity: 0;
+               transform: translateY(50px);
+            }
+            to {
+               opacity: 1;
+               transform: translateY(0);
+            }
+         }
+
+         /* Эффект для стрелок в карусели */
+         .carousel-control-prev:hover, .carousel-control-next:hover {
+            transform: scale(1.2);
+            color: #ffbb33;
+         }
+
+         /* Эффект кнопки "Contact Us" при наведении */
+         .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+         }
+
+         /* Увеличение изображений при наведении */
+         .carousel-item img:hover {
+            transform: scale(1.05);
+         }
+      </style>
 <!-- banner section end -->
       <!-- about section start -->
       <div class="about_section layout_padding">
@@ -15,7 +77,7 @@
                   <div class="col-md-6">
                      <h1 class="about_taital">About Us</h1>
                      <p class="about_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised </p>
-                     <div class="readmore_bt"><a href="#">Read More</a></div>
+                     <div class="readmore_bt"><a href="{% url 'about' %}">Read More</a></div>
                   </div>
                </div>
             </div>
@@ -23,123 +85,66 @@
       </div>
       <!-- about section end -->
       <!--  design section start -->
-      <div class="design_section layout_padding">
-         <div id="my_slider" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="container">
-                     <h1 class="design_taital">Our Work Furniture</h1>
-                     <p class="design_text">1 - There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteratio</p>
-                     <div class="design_section_2">
-                        <div class="row">
-                           <div class="col-md-4">
-                              <div class="box_main">
-                                 <p class="chair_text">Name</p>
-                                 <div class="image_3" href="#"><img src="{% static 'images/img-3.png' %}"></div>
-                                 <p class="chair_text">Price</p>
-                                 <div class="buy_bt"><a href="{% url 'product' %}">Buy Now</a></div>
-                              </div>
-                           </div>
-                           <div class="col-md-4">
-                              <div class="box_main">
-                                 <p class="chair_text">Chair 02</p>
-                                 <div class="image_4" href="#"><img src="{% static 'images/img-4.png' %}"></div>
-                                 <p class="chair_text">Price $100</p>
-                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
-                              </div>
-                           </div>
-                           <div class="col-md-4">
-                              <div class="box_main">
-                                 <p class="chair_text">Table</p>
-                                 <div class="image_4" href="#"><img src="{% static 'images/img-5.png' %}"></div>
-                                 <p class="chair_text">Price $100</p>
-                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
-                              </div>
-                           </div>
+        <div class="design_section layout_padding" style="padding: 50px 0;">
+            <div id="my_slider" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Loop through furniture items to create carousel items -->
+                    {% for item in furniture %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <div class="container">
+                                <h1 class="design_taital" style="font-size: 36px; color: #333; text-align: center; margin-bottom: 20px;">Our Furniture</h1>
+                                <p class="design_text" style="font-size: 18px; color: #555; text-align: center; margin-bottom: 30px; line-height: 1.6;">There are many variations of Lorem Ipsum text, but most of them have suffered alterations.</p>
+                                <div class="design_section_2">
+                                    <div class="row justify-content-center">
+                                        <!-- Dynamically display furniture item -->
+                                        <div class="col-md-4" style="padding: 15px;">
+                                            <div class="box_main" style="border: 1px solid #ddd; border-radius: 10px; background-color: #fff; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                                <p class="chair_text" style="font-size: 20px; color: #333; text-align: center; padding: 15px; margin: 0;">{{ item.name }}</p>
+                                                <hr>
+                                                <div class="image_3" style="text-align: center; padding: 20px;">
+                                                    <!-- Set the width and let the height auto adjust to maintain the aspect ratio -->
+                                                    <img src="{{ item.image.url }}" alt="{{ item.name }}"
+                                                         style="max-width: 100%; height: 200px; object-fit: contain; border-radius: 8px;">
+                                                </div>
+                                                <p class="chair_text" style="font-size: 18px; color: #333; text-align: center; padding: 10px 0;">Price ${{ item.price }}</p>
+
+                                                <!-- Buy Now Button (Updated Style) -->
+                                                <div class="buy_bt" style="text-align: center; margin-top: 20px;">
+                                                    <a href="{% url 'furniture_detail' item.id %}"
+                                                       style="display: inline-block; padding: 12px 25px; background-color: #0066cc; color: white; font-size: 18px; text-decoration: none; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s ease-in-out;">
+                                                        Check it
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="design_taital">Our Work Furniture</h1>
-                     <p class="design_text">2 - There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteratio</p>
-                     <div class="design_section_2">
-                        <div class="row">
-                           <div class="col-md-4">
-                              <div class="box_main">
-                                 <p class="chair_text">Chair 01</p>
-                                 <div class="image_3" href="#"><img src="{% static 'images/img-3.png' %}"></div>
-                                 <p class="chair_text">Price $100</p>
-                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
-                              </div>
-                           </div>
-                           <div class="col-md-4">
-                              <div class="box_main">
-                                 <p class="chair_text">Chair 02</p>
-                                 <div class="image_4" href="#"><img src="{% static 'images/img-4.png' %}"></div>
-                                 <p class="chair_text">Price $100</p>
-                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
-                              </div>
-                           </div>
-                           <div class="col-md-4">
-                              <div class="box_main">
-                                 <p class="chair_text">Table</p>
-                                 <div class="image_4" href="#"><img src="{% static 'images/img-5.png' %}"></div>
-                                 <p class="chair_text">Price $100</p>
-                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="design_taital">Our Work Furniture</h1>
-                     <p class="design_text">3 - There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteratio</p>
-                     <div class="design_section_2">
-                        <div class="row">
-                           <div class="col-md-4">
-                              <div class="box_main">
-                                 <p class="chair_text">Chair 01</p>
-                                 <div class="image_3" href="#"><img src="{% static 'images/img-3.png' %}"></div>
-                                 <p class="chair_text">Price $100</p>
-                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
-                              </div>
-                           </div>
-                           <div class="col-md-4">
-                              <div class="box_main">
-                                 <p class="chair_text">Chair 02</p>
-                                 <div class="image_4" href="#"><img src="{% static 'images/img-4.png' %}"></div>
-                                 <p class="chair_text">Price $100</p>
-                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
-                              </div>
-                           </div>
-                           <div class="col-md-4">
-                              <div class="box_main">
-                                 <p class="chair_text">Table</p>
-                                 <div class="image_4" href="#"><img src="{% static 'images/img-5.png' %}"></div>
-                                 <p class="chair_text">Price $100</p>
-                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Carousel controls -->
+                <a style="background-color: brown; border: solid black 1px;" class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+                    <i class="fa fa-long-arrow-left" style="font-size: 24px; color: white;"></i>
+                </a>
+                <a style="background-color: brown;  border: solid black 1px;" class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+                    <i class="fa fa-long-arrow-right" style="font-size: 24px; color: white;"></i>
+                </a>
+
             </div>
-            <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
-            <i class="fa fa-long-arrow-left" style="font-size:24px"></i>
-            </a>
-            <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
-            <i class="fa fa-long-arrow-right" style="font-size:24px"></i>
-            </a>
-         </div>
-         <div class="container">
-            <div class="read_bt"><a href="{% url 'about' %}">Read More</a></div>
-         </div>
-      </div>
+
+            <!-- Read more button -->
+            <div class="container" style="text-align: center; margin-top: 30px;">
+                <div class="read_bt">
+                    <a href="{% url 'shop' %}" style="font-size: 20px; color: #0066cc; text-decoration: none; font-weight: bold;">More</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
       <!--  design section end -->
       <!--  newsletter section start -->
       <div class="newsletter_section layout_padding">
@@ -157,32 +162,6 @@
          </div>
       </div>
       <!--  newsletter section end -->
-      <!-- contact section start -->
-      <div class="contact_section layout_padding">
-         <div class="container">
-            <div class="contact_section_2">
-               <div class="row">
-                  <div class="col-md-6">
-                     <div class="mail_section_1">
-                        <h1 class="contact_taital">Contact Us</h1>
-                        <input type="text" class="mail_text" placeholder="Name" name="text">
-                        <input type="text" class="mail_text" placeholder="Email" name="text">
-                        <input type="text" class="mail_text" placeholder="Phone Number" name="text">
-                        <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
-                        <div class="send_bt"><a href="#">SEND</a></div>
-                     </div>
-                  </div>
-                  <div class="col-md-6">
-                     <div class="map_main">
-                        <div class="map-responsive">
-                           <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France" width="600" height="360" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
 
 {% endblock content %}
 

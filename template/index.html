@@ -27,6 +27,7 @@
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <!-- owl stylesheets -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
       <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
       <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
    </head>
@@ -46,9 +47,6 @@
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="{% url 'about' %}">About</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'design' %}">Design</a>
                      </li>
                      <li class="nav-item">
                         <a class="nav-link" href="{% url 'shop' %}">Shop</a>
@@ -110,70 +108,6 @@
 
       <!-- header section end -->
 
-      <!-- Carousel section start -->
-      <div id="carouselExample" class="carousel slide" data-ride="carousel">
-         <div class="carousel-inner">
-            {% for banner in banners %}
-               <div class="carousel-item {% if forloop.first %}active{% endif %}" style="background-color: brown;">
-                  <div class="d-flex align-items-center justify-content-start" style="position: relative; height: 450px;">
-                     <img src="{{ banner.image.url }}" alt="{{ banner.title }}" class="d-block" style="border-radius: 25px; height: 380px; margin-left: 1220px; max-height: 350px; width: auto; object-fit: cover; border-radius: 15px; transition: transform 0.6s ease, opacity 0.6s ease;">
-                     <div class="carousel-caption d-none d-md-block" style="position: absolute; z-index: 2; top: 10%; right: 0; transform: translateX(50%); text-align: left; color: white; font-family: 'Roboto', sans-serif; opacity: 0; animation: fadeIn 2s forwards;">
-                        <h5 style="font-size: 3.5rem; font-weight: bold; text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7); transform: translateY(30px);">
-                           {{ banner.title }}
-                        </h5>
-                        <p style="font-size: 1.5rem; font-weight: 300; text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7); margin-top: 20px; transform: translateY(30px);">
-                           {{ banner.body }}
-                        </p>
-                        <a href="{% url 'contact' %}" class="btn btn-primary" style="margin-top: 100px; padding: 12px 30px; font-size: 1.2rem; font-weight: 600; border-radius: 50px; background-color: #007bff; border-color: #007bff;">
-                           Contact Us
-                        </a>
-                     </div>
-                  </div>
-               </div>
-            {% endfor %}
-         </div>
-         <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev" style="color: white; font-size: 3rem;">
-            <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1);"></span>
-            <span class="sr-only">Previous</span>
-         </a>
-         <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next" style="color: white; font-size: 3rem;">
-            <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1);"></span>
-            <span class="sr-only">Next</span>
-         </a>
-      </div>
-      <!-- Carousel section end -->
-
-      <style>
-         @keyframes fadeIn {
-            from {
-               opacity: 0;
-               transform: translateY(50px);
-            }
-            to {
-               opacity: 1;
-               transform: translateY(0);
-            }
-         }
-
-         /* Эффект для стрелок в карусели */
-         .carousel-control-prev:hover, .carousel-control-next:hover {
-            transform: scale(1.2);
-            color: #ffbb33;
-         }
-
-         /* Эффект кнопки "Contact Us" при наведении */
-         .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-         }
-
-         /* Увеличение изображений при наведении */
-         .carousel-item img:hover {
-            transform: scale(1.05);
-         }
-      </style>
-
       {% block content %}
       {% endblock content %}
 
@@ -190,14 +124,6 @@
          </div>
       </div>
       <!-- footer section end -->
-
-      <!-- copyright section start -->
-      <div class="copyright_section">
-         <div class="container">
-            <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html Templates</a></p>
-         </div>
-      </div>
-      <!-- copyright section end -->
 
       <!-- Javascript files-->
       <script src="{% static 'js/jquery.min.js' %}"></script>
