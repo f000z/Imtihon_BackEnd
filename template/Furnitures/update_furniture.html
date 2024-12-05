@@ -1,30 +1,35 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center mb-4" style="font-size: 36px; font-weight: 600;">Редактирование мебели: {{ furniture.name }}</h1>
+    <h1 class="text-center mb-4" style="font-size: 36px; font-weight: 600;">
+        {% trans "Редактирование мебели" %}: {{ furniture.name }}
+    </h1>
 
     <form method="post" enctype="multipart/form-data" class="shadow-lg p-4 rounded" style="background-color: #f9f9f9;">
         {% csrf_token %}
         <div class="form-group mb-3">
-            <label for="id_name" style="font-size: 18px; font-weight: 500;">Название</label>
+            <label for="id_name" style="font-size: 18px; font-weight: 500;">{% trans "Название" %}</label>
             {{ form.name }}
         </div>
         <div class="form-group mb-3">
-            <label for="id_price" style="font-size: 18px; font-weight: 500;">Цена</label>
+            <label for="id_price" style="font-size: 18px; font-weight: 500;">{% trans "Цена" %}</label>
             {{ form.price }}
         </div>
         <div class="form-group mb-3">
-            <label for="id_image" style="font-size: 18px; font-weight: 500;">Изображение</label>
+            <label for="id_image" style="font-size: 18px; font-weight: 500;">{% trans "Изображение" %}</label>
             {{ form.image }}
         </div>
         <div class="form-group mb-3">
-            <label for="id_category" style="font-size: 18px; font-weight: 500;">Категория</label>
+            <label for="id_category" style="font-size: 18px; font-weight: 500;">{% trans "Категория" %}</label>
             {{ form.category }}
         </div>
         <div class="text-center">
-            <button type="submit" class="btn btn-primary" style="padding: 10px 30px; font-size: 16px;">Обновить мебель</button>
+            <button type="submit" class="btn btn-primary" style="padding: 10px 30px; font-size: 16px;">
+                {% trans "Обновить мебель" %}
+            </button>
         </div>
     </form>
 
@@ -40,4 +45,5 @@
     </div>
     {% endif %}
 </div>
+
 {% endblock %}

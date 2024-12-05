@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load i18n %}
+
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elegant Form</title>
+    <title>{% trans "Elegant Form" %}</title>
     <style>
         * {
             margin: 0;
@@ -114,17 +116,17 @@
 </head>
 <body>
     <div class="form-container">
-        <h2>Sign up</h2>
+        <h2>{% trans "Ro'yxatdan o'tish" %}</h2>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
                 {{ form.as_p }}
             </div>
             <div class="form-group">
-                <button style="width: 150px; margin-left: 130px;" type="submit" class="btn-submit">Sign up</button>
+                <button style="width: 150px; margin-left: 130px;" type="submit" class="btn-submit">{% trans "Ro'yxatdan o'tish" %}</button>
             </div>
         </form>
-        <p style="color: gray;">Do you have Any account?<a href="{% url 'login' %}">Sign in</a></p>
+        <p style="color: gray;">{% trans "Agar sizda hisob mavjud bo'lsa" %} <a href="{% url 'login' %}">{% trans "Kirish" %}</a></p>
     </div>
 </body>
 </html>

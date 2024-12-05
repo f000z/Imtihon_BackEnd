@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <style>
     /* General Page Styling */
     body {
@@ -243,18 +245,18 @@
 
 <div class="container">
     <div class="form-container">
-        <h1 class="form-title">Login</h1>
+        <h1 class="form-title">{% trans "Login" %}</h1>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
                 {{ form.as_p }}
             </div>
-            <button type="submit" class="submit-btn">Login</button>
+            <button type="submit" class="submit-btn">{% trans "Login" %}</button>
         </form>
 
         <div class="form-footer">
-            <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
-            <p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+            <p>{% trans "Don't have an account?" %} <a href="{% url 'register' %}">{% trans "Sign Up" %}</a></p>
+            <p><a href="{% url 'password_reset' %}">{% trans "Forgot password?" %}</a></p>
         </div>
     </div>
 </div>

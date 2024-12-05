@@ -10,7 +10,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Fiu</title>
+      <title>{% trans "Fiu" %}</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -28,6 +28,8 @@
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <!-- owl stylesheets -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      <!-- boxicons -->
+      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
       <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
       <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
    </head>
@@ -43,16 +45,16 @@
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul style="position: relative; right: 50px;" class="navbar-nav mr-auto">
                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        <a class="nav-link" href="{% url 'home' %}">{% trans "Home" %}</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                        <a class="nav-link" href="{% url 'about' %}">{% trans "About" %}</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'shop' %}">Shop</a>
+                        <a class="nav-link" href="{% url 'shop' %}">{% trans "Shop" %}</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                        <a class="nav-link" href="{% url 'contact' %}">{% trans "Contact" %}</a>
                      </li>
                   </ul>
                   <form action="{% url 'set_language' %}" method="post" id="languageForm" style="padding: 10px;">
@@ -81,7 +83,7 @@
                               </a>
                               <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: brown; color: white;">
                                  <a class="dropdown-item" href="{% url 'logout' %}" style=" background-color: brown; color: yellow; text-decoration: none;">
-                                    Log out
+                                    {% trans "Log out" %}
                                  </a>
                               </div>
                            </li>
@@ -89,7 +91,7 @@
                            <li style="display: inline;">
                               <h3>
                                  <a href="{% url 'register' %}" style="color: yellow; text-decoration: none; white-space: nowrap;">
-                                    Sign in
+                                    {% trans "Sign in" %}
                                  </a>
                               </h3>
                            </li>
@@ -97,14 +99,9 @@
                         </ul>
                      </div>
                   </form>
-
-
-
-
                </div>
             </div>
         </nav>
-
 
       <!-- header section end -->
 
@@ -116,9 +113,9 @@
          <div class="container">
             <div class="footer_location_text">
                <ul>
-                  <li><img src="{% static 'images/map-icon.png' %}"><span class="padding_left_10"><a href="#">Loram Ipusm hosting web</a></span></li>
-                  <li><img src="{% static 'images/call-icon.png' %}"><span class="padding_left_10"><a href="#">Call : +7586656566</a></span></li>
-                  <li><img src="{% static 'images/mail-icon.png' %}"><span class="padding_left_10"><a href="#">demo@gmail.com</a></span></li>
+                  <li><img src="{% static 'images/map-icon.png' %}"><span class="padding_left_10"><a href="#">{% trans "Asia/Samarkand" %}</a></span></li>
+                  <li><img src="{% static 'images/call-icon.png' %}"><span class="padding_left_10"><a href="#">{% trans "Call : +998 88 910 11 02" %}</a></span></li>
+                  <li><img src="{% static 'images/mail-icon.png' %}"><span class="padding_left_10"><a href="#">FiuMebel@gmail.com</a></span></li>
                </ul>
             </div>
          </div>

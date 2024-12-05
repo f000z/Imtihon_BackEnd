@@ -1,49 +1,53 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <div class="container mt-5">
+    <a href="{% url 'search' %}" class="search-icon" style="position: relative; top: -18px;">
+        <i style="font-size: 35px;" class="bx bx-search"></i>
+    </a>
     <!-- Title and Description -->
     <hr>
     <h1 class="text-center animated-title" style="font-size: 36px; font-weight: 600; color: #333;">
-        Our Elegant Furniture Collection
+        {% trans 'Our Elegant Furniture Collection' %}
     </h1>
     <p class="text-center animated-description" style="font-size: 18px; color: #777; line-height: 1.6;">
-        Browse through our modern, comfortable, and stylish furniture selection, perfect for every space in your home or office.
+        {% trans 'Browse through our modern, comfortable, and stylish furniture selection, perfect for every space in your home or office.' %}
     </p>
 
     <div class="row mt-4">
         {% for item in furnitures %}
         <div class="col-md-4 mb-4 animated-item">
             <!-- Product Card -->
-            <div class="card" style="border: none; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); height: 400px; padding: 10px;">
-                <img src="{{ item.image.url }}" alt="{{ item.name }}" class="card-img-top" style="width: 100%; height: 200px; object-fit: contain; margin-top: 15px;">
+            <div class="card" style="border: none; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); height: 100%; padding: 10px;">
+                <img src="{{ item.image.url }}" alt="{{ item.name }}" class="card-img-top" style="width: 100%; height: 200px; object-fit: cover; margin-top: 15px;">
                 <div class="card-body" style="padding: 10px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
                     <h5 class="card-title" style="font-size: 18px; font-weight: 500; color: #333; line-height: 1.4;">{{ item.name }}</h5>
                     <p class="card-text" style="font-size: 16px; font-weight: 600; color: #007bff; line-height: 1.5;">$ {{ item.price }}</p>
 
                     <!-- "Check It" Button -->
-                    <div class="buy_bt" style="text-align: center; margin-top: -75px;">
-                        <a href="{% url 'furniture_detail' item.id %}"
-                           style="display: inline-block; padding: 12px 25px; background-color: #28a745; color: white; font-size: 16px; text-decoration: none; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s ease-in-out;">
-                            Check It
+                    <div class="buy_bt" style="text-align: center; margin-top: -70px;">
+                        <a href="{% url 'furniture_detail' item.id %}" class="btn btn-success"
+                           style="padding: 12px 25px; font-size: 16px; text-decoration: none; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s ease-in-out;">
+                            {% trans 'Check It' %}
                         </a>
                     </div>
                 </div>
             </div>
         </div>
         {% empty %}
-        <p class="col-12 text-center">No products found.</p>
+        <p class="col-12 text-center">{% trans 'No products found.' %}</p>
         {% endfor %}
     </div>
 </div>
 
+{% if user.is_staff %}
 <!-- Create Furniture Button - fixed to the top right with animation -->
 <a href="{% url 'create_furniture' %}" class="btn create-btn"
-   style="position: fixed; right: 20px; top: 120px; z-index: 1050; padding: 15px; border-radius: 50%; background: linear-gradient(145deg, #28a745, #218838); color: white; font-size: 30px; display: flex; justify-content: center; align-items: center; width: 60px; height: 60px; text-decoration: none; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;">
-    <i class="fas fa-plus"
-       style="transition: transform 0.3s ease, color 0.3s ease;">
-    </i> <!-- Font Awesome Plus Icon -->
+   style="position: fixed; right: 20px; top: 120px; z-index: 1050; padding: 15px; border-radius: 50%; background: linear-gradient(145deg, #28a745, #218838); color: white; font-size: 30px; display: flex; justify-content: center; align-items: center; width: 60px; height: 60px; text-decoration: none; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;" aria-label="{% trans 'Create Furniture' %}">
+    <i class="fas fa-plus" style="transition: transform 0.3s ease, color 0.3s ease;"></i> <!-- Font Awesome Plus Icon -->
 </a>
+{% endif %}
 
 {% endblock content %}

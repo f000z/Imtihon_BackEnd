@@ -1,19 +1,28 @@
 {% extends 'index.html' %}
 {% load static %}
-{% block content %}
+{% load i18n %}
 
-  <section id="contentSection">
+{% block content %}
+<section id="contentSection" class="error-page-section">
+  <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-8 col-sm-8">
+      <div class="col-lg-8 col-md-8 col-sm-8 mx-auto text-center">
         <div class="left_content">
           <div class="error_page">
-            <h3>We Are Sorry</h3>
-            <h1>404</h1>
-            <p>Unfortunately, the page you were looking for could not be found. It may be temporarily unavailable, moved or no longer exists</p>
-            <span></span> <a href="{% url 'category_page' %}" class="wow fadeInLeftBig">Go to home page</a> </div>
+            <h3 style="font-size: 28px; color: #333;">We Are Sorry</h3>
+            <h1 style="font-size: 120px; font-weight: bold; color: #ff0000;">404</h1>
+            <p style="font-size: 18px; color: #777; margin-bottom: 20px;">
+              Unfortunately, the page you were looking for could not be found. It may be temporarily unavailable, moved, or no longer exists.
+            </p>
+            <span></span>
+            <a href="{% url 'category_page' %}" class="wow fadeInLeftBig btn btn-primary"
+               style="padding: 10px 20px; background-color: #28a745; color: white; border-radius: 5px; font-size: 16px; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); transition: background-color 0.3s ease;">
+              Go to Home Page
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </section>
-
+  </div>
+</section>
 {% endblock content %}

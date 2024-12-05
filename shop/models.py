@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -35,7 +36,7 @@ class ShopMainView(models.Model):
 class ContactModel(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    phone = models.IntegerField(max_length=15)
+    phone = models.CharField(max_length=15, validators=[RegexValidator(r'^\+?1?\d{9,15}$')])
     message = models.TextField()
 
     def __str__(self):

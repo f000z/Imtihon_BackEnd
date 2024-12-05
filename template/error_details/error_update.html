@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<h1 style="color: #721c24; font-size: 32px; margin-bottom: 20px;">{% trans "Ошибка при обновлении мебели" %}</h1>
+<div style="background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px; padding: 20px; margin-bottom: 20px;">
+    <ul style="list-style-type: none; padding: 0;">
+        {% for field, error in errors.items %}
+            <li style="font-size: 16px; margin: 10px 0; background-color: #f5c6cb; padding: 10px; border-radius: 5px;">
+                <strong>{% trans "{{ field }}" %}:</strong> {{ error|join:", " }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<a href="javascript:history.back()" style="background-color: #721c24; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px; margin-top: 20px; display: inline-block;">
+    {% trans "Назад" %}
+</a>
+{% endblock content %}

@@ -1,55 +1,81 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load i18n %}
+
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center mb-5" style="font-size: 42px; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 1px;">Создание новой мебели</h1>
+    <h1 class="text-center mb-5" style="font-size: 42px; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 1px;">{% trans "Создание новой мебели" %}</h1>
 
     <form method="post" enctype="multipart/form-data" style="background-color: #ffffff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); border: 1px solid #e6e6e6; padding: 30px; margin-top: 50px;">
         {% csrf_token %}
 
         <!-- Name Field -->
         <div class="form-group mb-4" style="margin-bottom: 1.5rem;">
-            <label for="id_name" style="font-size: 18px; font-weight: 600; color: #333; letter-spacing: 1px;">Name</label>
+            <label for="id_name" style="font-size: 18px; font-weight: 600; color: #333; letter-spacing: 1px;">{% trans "Name" %}</label>
             {{ form.name }}
+            {% if form.name.errors %}
+                <div class="text-danger mt-2">
+                    {% for error in form.name.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
 
         <!-- Price Field -->
         <div class="form-group mb-4" style="margin-bottom: 1.5rem;">
-            <label for="id_price" style="font-size: 18px; font-weight: 600; color: #333; letter-spacing: 1px;">Price</label>
+            <label for="id_price" style="font-size: 18px; font-weight: 600; color: #333; letter-spacing: 1px;">{% trans "Price" %}</label>
             {{ form.price }}
+            {% if form.price.errors %}
+                <div class="text-danger mt-2">
+                    {% for error in form.price.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
 
         <!-- Image Field -->
         <div class="form-group mb-4" style="margin-bottom: 1.5rem;">
-            <label for="id_image" style="font-size: 18px; font-weight: 600; color: #333; letter-spacing: 1px;">Image</label>
+            <label for="id_image" style="font-size: 18px; font-weight: 600; color: #333; letter-spacing: 1px;">{% trans "Image" %}</label>
             {{ form.image }}
+            {% if form.image.errors %}
+                <div class="text-danger mt-2">
+                    {% for error in form.image.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
 
         <!-- Submit Button -->
         <div class="text-center">
             <button type="submit" style="background-color: #28a745; color: white; font-size: 18px; font-weight: 600; padding: 12px 40px; border-radius: 30px; border: none; cursor: pointer; transition: all 0.3s ease;">
-                Create Model
+                {% trans "Create Model" %}
             </button>
         </div>
     </form>
 
-    <!-- Display Errors -->
+    <!-- Display Errors (General Form Errors) -->
     {% if form.errors %}
-    <div style="background-color: #f8d7da; color: #721c24; border-radius: 8px; padding: 15px; margin-top: 20px;">
-        <ul>
-            {% for field in form %}
-                {% for error in field.errors %}
+        <div style="background-color: #f8d7da; color: #721c24; border-radius: 8px; padding: 15px; margin-top: 20px;">
+            <ul>
+                {% for error in form.non_field_errors %}
                     <li>{{ error }}</li>
                 {% endfor %}
-            {% endfor %}
-        </ul>
-    </div>
+            </ul>
+        </div>
+    {% endif %}
+
+    <!-- Success Message (if needed) -->
+    {% if success %}
+        <div class="alert alert-success mt-4" role="alert">
+            {% trans "Мебель успешно создана!" %}
+        </div>
     {% endif %}
 </div>
-
 {% endblock %}
-
 <script>
     // Focus effect on input fields (to make them more interactive)
     document.querySelectorAll('input, select, textarea').forEach(function(input) {

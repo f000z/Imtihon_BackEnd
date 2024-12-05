@@ -1,12 +1,14 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load i18n %}
+
 {% block content %}
 <br>
-<h1 style="text-align: center; font-size: 35px;">The People Contact Us!</h1>
+<h1 style="text-align: center; font-size: 35px;">{% trans "The People Contact Us!" %}</h1>
 <hr><br>
 <div>
     {% for i in people %}
-    <a><h2 style="margin-left: 20px;">  * | {{i.name}} | *  </h2></a>
+    <a><h2 style="margin-left: 20px;">  * | {{ i.name }} | *  </h2></a>
     {% endfor %}
 </div>
 

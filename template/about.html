@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+{% load i18n %}
+
 <!-- About Us Section Start -->
 <div class="about_section layout_padding py-5">
     <div class="container">
@@ -11,23 +13,22 @@
                 <div class="col-md-6 mb-4 mb-md-0">
                     <div class="image_2">
                         <!-- Using a static image here -->
-                        <img src="{% static 'images/furniture.jpg' %}" alt="Furniture Shop Image"
+                        <img src="{% static 'images/furniture.jpg' %}" alt="{% trans 'Furniture Shop Image' %}"
                              style="margin-top: 150px; height: 350px; object-fit: cover; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
                     </div>
                 </div>
-
 
                 <!-- Text Section -->
                 <div class="col-md-6">
                     <h1 class="about_taital text-dark font-weight-bold mb-4"
                         style="font-size: 36px; line-height: 1.4; color: #333;">
-                        About Our Furniture Shop
+                        {% trans 'About Our Furniture Shop' %}
                     </h1>
                     <p class="about_text text-muted"
                        style="font-size: 18px; line-height: 1.8; color: #555;">
-                        Welcome to our Furniture Shop! We bring you a wide selection of beautifully crafted furniture for every corner of your home. Our furniture is designed to add style, comfort, and functionality to your living spaces.
+                        {% trans 'Welcome to our Furniture Shop! We bring you a wide selection of beautifully crafted furniture for every corner of your home. Our furniture is designed to add style, comfort, and functionality to your living spaces.' %}
                         <br><br>
-                        We believe in high-quality craftsmanship, sustainable materials, and a wide variety of designs that fit every taste. From contemporary styles to classic pieces, we have something for everyone.
+                        {% trans 'We believe in high-quality craftsmanship, sustainable materials, and a wide variety of designs that fit every taste. From contemporary styles to classic pieces, we have something for everyone.' %}
                     </p>
                 </div>
             </div>
@@ -39,17 +40,17 @@
 <!-- Why Choose Us Section Start -->
 <div class="why_choose_section py-5 bg-light">
     <div class="container text-center">
-        <h2 class="font-weight-bold mb-4" style="font-size: 32px;">Why Choose Us?</h2>
-        <p class="font-size-lg text-muted mb-4" style="line-height: 1.6; font-size: 20px;">Here are a few reasons why we stand out from the competition:</p>
+        <h2 class="font-weight-bold mb-4" style="font-size: 32px;">{% trans 'Why Choose Us?' %}</h2>
+        <p class="font-size-lg text-muted mb-4" style="line-height: 1.6; font-size: 20px;">{% trans 'Here are a few reasons why we stand out from the competition:' %}</p>
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="icon-box shadow-lg p-4 rounded bg-white"
                      style="border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                     <!-- Using static image for quality icon -->
                     <img src="{% static 'images/furniture.jpg' %}" class="mb-3"
-                         style="width: 120px; height: 120px; object-fit: contain; border-radius: 10px;" alt="Quality Icon">
-                    <h5 class="font-weight-bold" style="font-size: 18px; color: #333;">Top-Quality Materials</h5>
-                    <p class="text-muted" style="font-size: 16px; color: #777;">Our furniture is made with premium materials ensuring long-lasting durability.</p>
+                         style="width: 120px; height: 120px; object-fit: contain; border-radius: 10px;" alt="{% trans 'Quality Icon' %}">
+                    <h5 class="font-weight-bold" style="font-size: 18px; color: #333;">{% trans 'Top-Quality Materials' %}</h5>
+                    <p class="text-muted" style="font-size: 16px; color: #777;">{% trans 'Our furniture is made with premium materials ensuring long-lasting durability.' %}</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
@@ -57,9 +58,9 @@
                      style="border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                     <!-- Placeholder image from Unsplash for Design Icon -->
                     <img src="{% static 'images/img-4.png' %}" class="mb-3"
-                         style="width: 120px; height: 120px; object-fit: contain; border-radius: 10px;" alt="Design Icon">
-                    <h5 class="font-weight-bold" style="font-size: 18px; color: #333;">Modern & Stylish Designs</h5>
-                    <p class="text-muted" style="font-size: 16px; color: #777;">We offer a wide range of contemporary and timeless furniture styles to suit all tastes.</p>
+                         style="width: 120px; height: 120px; object-fit: contain; border-radius: 10px;" alt="{% trans 'Design Icon' %}">
+                    <h5 class="font-weight-bold" style="font-size: 18px; color: #333;">{% trans 'Modern & Stylish Designs' %}</h5>
+                    <p class="text-muted" style="font-size: 16px; color: #777;">{% trans 'We offer a wide range of contemporary and timeless furniture styles to suit all tastes.' %}</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
@@ -67,9 +68,9 @@
                      style="border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
                     <!-- Placeholder image from Unsplash for Affordable Icon -->
                     <img src="{% static 'images/img-5.png' %}" class="mb-3"
-                         style="width: 120px; height: 120px; object-fit: contain; border-radius: 10px;" alt="Affordable Icon">
-                    <h5 class="font-weight-bold" style="font-size: 18px; color: #333;">Affordable Prices</h5>
-                    <p class="text-muted" style="font-size: 16px; color: #777;">Our prices are designed to suit a wide range of budgets, without compromising on quality.</p>
+                         style="width: 120px; height: 120px; object-fit: contain; border-radius: 10px;" alt="{% trans 'Affordable Icon' %}">
+                    <h5 class="font-weight-bold" style="font-size: 18px; color: #333;">{% trans 'Affordable Prices' %}</h5>
+                    <p class="text-muted" style="font-size: 16px; color: #777;">{% trans 'Our prices are designed to suit a wide range of budgets, without compromising on quality.' %}</p>
                 </div>
             </div>
         </div>

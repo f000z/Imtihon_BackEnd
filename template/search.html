@@ -1,0 +1,76 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="container">
+    <div style="max-width: 500px; margin: 0 auto;">
+        <form method="get" action="{% url 'search' %}" id="search-form" class="search-form" style="padding: 20px;">
+            <div class="input-wrapper" style="position: relative;">
+                <input
+                    type="text"
+                    name="q"
+                    placeholder="{% trans 'Search' %}"
+                    value="{{ query }}"
+                    id="search-input"
+                    class="search-input"
+                    style="height: 50px; width: 100%; padding: 12px 20px; border: 2px solid #ddd; border-radius: 30px; font-size: 16px; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
+                <button type="submit" aria-label="{% trans 'Search' %}" style="position: absolute; height: 42px; width: 42px; top: 50%; right: 10px; transform: translateY(-50%); color: white; border: none; border-radius: 50%; padding: 12px; font-size: 18px; cursor: pointer; transition: background-color 0.3s ease; background-color: white;">
+                    <i class="bx bx-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const inputField = document.getElementById('search-input');
+        inputField.addEventListener('keyup', function(event) {
+            if (inputField.value.trim().length > 15) {
+                document.getElementById('search-form').submit();
+            }
+        });
+    </script>
+
+    <hr>
+    <h1 class="text-center animated-title" style="font-size: 36px; font-weight: 600; color: #333;">
+        {% trans 'Our Elegant Furniture Collection' %}
+    </h1>
+    <p class="text-center animated-description" style="font-size: 18px; color: #777; line-height: 1.6;">
+        {% trans 'Browse through our modern, comfortable, and stylish furniture selection, perfect for every space in your home or office.' %}
+    </p>
+
+    <div class="row mt-4">
+        {% if results %}
+            {% for furniture in results %}
+                <div class="col-md-4 mb-4 animated-item">
+                    <!-- Product Card -->
+                    <div class="card" style="border: none; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); height: 400px; padding: 10px;">
+                        <img src="{{ furniture.image.url }}" alt="{{ furniture.name }}" class="card-img-top" style="width: 100%; height: 200px; object-fit: cover; margin-top: 15px;">
+                        <div class="card-body" style="padding: 10px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                            <h5 class="card-title" style="font-size: 18px; font-weight: 500; color: #333; line-height: 1.4;">
+                                {{ furniture.name }}
+                            </h5>
+                            <p class="card-text" style="font-size: 16px; font-weight: 600; color: #007bff; line-height: 1.5;">
+                                {{ furniture.price }}
+                            </p>
+
+                            <!-- "Check It" Button -->
+                            <div class="buy_bt" style="text-align: center; margin-top: -75px;">
+                                <a href="{% url 'furniture_detail' furniture.id %}"
+                                   style="display: inline-block; padding: 12px 25px; background-color: #28a745; color: white; font-size: 16px; text-decoration: none; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s ease-in-out;">
+                                    {% trans 'Check It' %}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="col-12 text-center" style="font-size: 18px; color: #777; text-align: center; margin-top: 50px;">
+                {% trans 'No results found for' %} "{{ query }}".
+            </p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

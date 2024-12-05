@@ -1,5 +1,7 @@
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x62)@^gk%o6u#8q-te#dy9gd364pjw9o8n4z^ddv^k^xb-z@=u'
+SECRET_KEY = 'django-insecure-x62)@^gk%o6u#8q-te#dy9gd364pjw9o8n4z^ddv^k^xb-@=u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # settings.py
@@ -79,6 +81,23 @@ JAZZMIN_SETTINGS = {
     'hide_models': [],  # Optionally, specify models you want to hide
 }
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -153,19 +172,20 @@ USE_I18N = True
 USE_TZ = True
 
 LANGUAGES = [
-    ('en', 'English'),
-    ('ru', 'Русский'),
-    ('uz', 'O‘zbek tili'),
+    ('en', _('English')),
+    ('ru', _('Русский')),
+    ('uz', _('O‘zbek tili')),
 ]
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
 
-LOCALE_PATHS = BASE_DIR, 'locale'
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-import os
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
